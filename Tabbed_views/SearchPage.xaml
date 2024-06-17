@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recipe_app.Tabbed_views.SearchPage"
+             Title="History"
+             IconImageSource="search.svg"
+             xmlns:m="clr-namespace:Recipe_app.Models"
+              xmlns:vm="clr-namespace:Recipe_app.Models"
+             x:DataType="vm:SearchPageModel"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False">
+
+
+    <ScrollView>
+    <StackLayout>
+        <HorizontalStackLayout >
+            <Label Text="Search" TextColor="DarkGray" Margin="20" HeightRequest="50" Padding="10,10,0,0"
+                   WidthRequest="350" BackgroundColor="LightGray" FontFamily="Poppins" >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+
+                </Label.GestureRecognizers>
+            </Label>
+            <Frame HeightRequest="50" BackgroundColor="LightGray" Margin="-30,0,0,0" BorderColor="Transparent">
+                <ImageButton Source="searchicon.svg" HeightRequest="20" WidthRequest="35"  
+                             BackgroundColor="LightGray" Margin="-20"     />
+            </Frame>
+
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label Text="Search History" FontAttributes="Bold" FontSize="Medium" Padding="15,10,0,0"/>
+            <Label Text="See all" Padding="220,15,0,0" FontAttributes="Bold" TextColor="#FB9400">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </HorizontalStackLayout>
+        <ScrollView>
+            <ListView ItemsSource="{Binding RecipeHistory}" RowHeight="90" 
+              IsPullToRefreshEnabled="False" SeparatorVisibility="None"
+                      x:Name="listView1">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="m:History">
+
+                        <ViewCell>
+                                <Frame
+                                    CornerRadius="10"
+                                    HasShadow="True"
+                                    BorderColor="DarkGray"
+                                    BackgroundColor="White"
+                                    Padding="0"
+                                    Margin="10"
+                                    HeightRequest="80"
+                                    WidthRequest="380">
+
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3"/>
+                                    </Frame.GestureRecognizers>
+                                    <VerticalStackLayout>
+                                      
+
+                                        <HorizontalStackLayout>
+                                            <ImageButton Source="{Binding Image}"  WidthRequest="100" CornerRadius="0" Aspect="AspectFill" HeightRequest="80"
+                                                         Padding="15,15,0,0" HorizontalOptions="StartAndExpand" Margin="0"/>
+                                            <Label Text="{Binding Name}" Padding="10,0,0,0" FontAttributes="Bold" VerticalOptions="Center"/>
+                                            <!--<ImageButton Clicked="ImageButton_Clicked_1" Source="bookmarkwhite.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="End" Margin="80,0,0,0" />-->
+                                            
+                                        </HorizontalStackLayout>
+                                    </VerticalStackLayout>
+                                </Frame>
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+        
+
+        <HorizontalStackLayout>
+            <Label Text="Last viewed" FontAttributes="Bold" FontSize="Medium" Padding="15,15,0,0"/>
+            <Label Text="See all" Padding="243,15,0,0" FontAttributes="Bold" TextColor="#FB9400">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+                </Label.GestureRecognizers>
+            </Label>
+        </HorizontalStackLayout>
+        <ScrollView>
+            <ListView ItemsSource="{Binding LastViewedItems}" RowHeight="250"  
+          x:Name="listView2" SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="m:LastViewed">
+
+                        <ViewCell>
+
+
+                            <StackLayout >
+
+                                <!-- Elevated View (CardView) -->
+                                <Frame CornerRadius="10"
+                                       HasShadow="True"
+                                       BorderColor="DarkGray"
+                                       BackgroundColor="white"
+                                       Padding="0"
+                                       Margin="-200,10,0,0"
+                                       HeightRequest="220"
+                                       WidthRequest="190">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3"/>
+                                        </Frame.GestureRecognizers>
+
+
+                                        <!-- Elevated View Content -->
+                                    <StackLayout>
+                                        <HorizontalStackLayout Padding="-5,0,15,5" >
+                                            <Image Source="{Binding LImage}" HeightRequest="170"  WidthRequest="220"  Aspect="AspectFill"/>
+                                            
+                                        </HorizontalStackLayout>
+
+                                        <HorizontalStackLayout>
+                                            <Label Text="Chinon Apple Tarts" Padding="10,10,0,10" FontAttributes="Bold"/>
+                                            <!--<ImageButton Clicked="ImageButton_Clicked_1" Source="bookmarkwhite.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="End" Margin="45,0,0,0" />-->
+                                            
+                                            
+                                        </HorizontalStackLayout>
+                                    </StackLayout>
+
+                                        
+
+                                    
+                                </Frame>
+
+                                <Frame CornerRadius="10"
+                        HasShadow="True"
+                        BorderColor="DarkGray"
+                        BackgroundColor="white"
+                        Padding="0"
+                        Margin="200,-220,0,0"
+                        HeightRequest="220"
+                        WidthRequest="190">
+
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3"/>
+                                        </Frame.GestureRecognizers>
+
+                                        <!-- Elevated View Content -->
+                                    <StackLayout>
+                                        <HorizontalStackLayout Padding="-5,0,15,5" >
+                                            <Image  Source="vegan_lasagna.jpg" HeightRequest="170"  WidthRequest="220"  Aspect="AspectFill"/>
+
+                                        </HorizontalStackLayout>
+
+                                        <HorizontalStackLayout>
+                                            <Label Text="Vegan Lasagna" Padding="10,10,0,10" FontAttributes="Bold"/>
+                                            <!--<ImageButton Clicked="ImageButton_Clicked_1" Source="bookmarkwhite.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="End" Margin="45,0,0,0" />-->
+                                            
+
+                                        </HorizontalStackLayout>
+                                    </StackLayout>
+
+
+
+
+                                </Frame>
+
+                            </StackLayout>
+
+
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+        
+
+
+    </StackLayout>
+    </ScrollView>
+
+</ContentPage>

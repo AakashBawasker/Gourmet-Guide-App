@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"            
+           xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+        
+             x:Class="Recipe_app.Tabbed_views.HomePage"
+             Title="Home_Page"          
+            xmlns:vm="clr-namespace:Recipe_app.Models"
+            x:DataType="vm:HomeViewModel"
+             
+            xmlns:m="clr-namespace:Recipe_app.Models"
+            xmlns:apimodel="clr-namespace:Recipe_app.ApiModels"
+            xmlns:android="clr-namespace:Microsoft.Maui.Controls.PlatformConfiguration.AndroidSpecific;assembly=Microsoft.Maui.Controls"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.IsSwipePagingEnabled="False">
+
+    
+    <!--#HomePage -->
+    <ContentPage 
+        NavigationPage.HasNavigationBar="False"
+        NavigationPage.HasBackButton="False"              
+        x:Name="homepage" 
+        Title="Home" 
+        IconImageSource="home.svg">
+
+        <ContentPage.Resources>
+            <ResourceDictionary>
+                <toolkit:SelectedItemEventArgsConverter x:Key="SelectedItemEventArgsConverter" />
+            </ResourceDictionary>
+        </ContentPage.Resources>
+        
+        <StackLayout>
+            <Label Text="No Internet Connection" IsVisible="{Binding ShowNoInternetMessage}" />
+            
+            <HorizontalStackLayout >
+                <Label Text="Search" TextColor="DarkGray" Margin="20" HeightRequest="50" Padding="10,10,0,0"
+                       WidthRequest="350" BackgroundColor="LightGray" FontFamily="Poppins"  >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2"/>
+
+                    </Label.GestureRecognizers>
+                </Label>
+                <Frame HeightRequest="50" BackgroundColor="LightGray" Margin="-30,0,0,0" BorderColor="Transparent">
+                    <ImageButton Source="searchicon.svg" HeightRequest="20" WidthRequest="35"  
+             BackgroundColor="LightGray" Margin="-20"     />
+                </Frame>
+                
+            </HorizontalStackLayout>
+
+            <ActivityIndicator Color="CadetBlue" IsRunning="True" IsVisible="{Binding ShowLoaderForCategoris}"/>
+            <CollectionView ItemsSource="{Binding Categories}"
+                            SelectionMode="Single"
+                            x:Name="ItemsCollectionView"
+                            SelectionChangedCommandParameter="{Binding SelectedItem, Source={x:Reference ItemsCollectionView}}"
+                            SelectionChangedCommand="{Binding ClickCommand}" 
+                            SelectionChanged="CollectionView_SelectionChanged"
+                            >
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Horizontal" />
+                </CollectionView.ItemsLayout>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="apimodel:MealCategories">
+                        <StackLayout >
+                            
+                            <Frame HeightRequest="110" WidthRequest="110"  BorderColor="Transparent" Margin="0,-20,0,0"
+                                  >
+                                <Frame.Triggers>
+                                    <DataTrigger TargetType="Frame"
+                       Binding="{Binding isSelected},Path={Binding isSelected}}"
+                                             Value="true">
+                                        <Setter Property="BackgroundColor" Value="Transparent"/>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Frame"
+                                                 Binding="{Binding isSelected},Path={Binding isSelected}}"
+                      Value="false">
+                                        <Setter Property="BackgroundColor" Value="Transparent"/>
+                                    </DataTrigger>
+                                </Frame.Triggers>
+                                <ImageButton Source="{Binding strCategoryThumb}"   Padding="0,0,0,0" CornerRadius="35" Aspect="AspectFill"/>
+                            </Frame>
+                            <Label Text="{Binding strCategory}"  HorizontalOptions="CenterAndExpand"  FontFamily="Poppins" MaximumWidthRequest="140"/>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            
+            <ListView ItemsSource="{Binding Recipes}" RowHeight="250" SeparatorVisibility="None" 
+                         SelectionMode="Single"
+                      x:Name="listView">
+                
+                <ListView.Behaviors>
+                    <toolkit:EventToCommandBehavior
+                EventName="ItemSelected"
+                Command="{Binding RecipeItemSelectedCommand}"
+                EventArgsConverter="{StaticResource SelectedItemEventArgsConverter}" />
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="apimodel:RecipeItemResponse">
+                        <ViewCell>
+                            
+                            <StackLayout Padding="10">
+                                <!-- Elevated View (CardView) -->
+                                <Frame CornerRadius="10"
+               HasShadow="True"
+               BorderColor="DarkGray"
+               BackgroundColor="White"
+               Padding="0"
+               Margin="5"
+                HeightRequest="225" 
+                  >
+
+                                    <!-- Elevated View Content -->
+                                    <StackLayout>
+                                        <Image HorizontalOptions="FillAndExpand" HeightRequest="170"  Aspect="Fill" >
+                                            <Image.Source >
+                                                <UriImageSource Uri="{Binding strMealThumb}" CacheValidity="1" CachingEnabled="true" />
+                                            </Image.Source>
+                                          
+
+                                        </Image>
+
+                                        <Label  Grid.Row="1" Text="{Binding strMeal}" Padding="10,10,0,0" FontSize="Medium" FontAttributes="Bold" FontFamily="Poppins">
+                                           
+                                        </Label>
+                                        <!--<ImageButton x:Name="imageButton" Source="bookmarkwhite.png"  HeightRequest="25" WidthRequest="25"
+                                                    HorizontalOptions="End" Margin="0,-25,10,0" Clicked="ImageButton_Clicked_1"/>-->
+         
+                                    </StackLayout>
+
+                                </Frame>
+
+                            </StackLayout>
+                        </ViewCell>
+
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+        </StackLayout>
+    </ContentPage>
+    <!--#endregion-->
+
+    
+
+    
+
+</TabbedPage>

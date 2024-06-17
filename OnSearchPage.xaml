@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             x:Class="Recipe_app.OnSearchPage"
+             xmlns:apimodel="clr-namespace:Recipe_app.ApiModels"
+             xmlns:vm="clr-namespace:Recipe_app.Models"
+             x:DataType="vm:OnSearchPageViewModel"
+             Title="OnSearchPage"
+             NavigationPage.HasNavigationBar="False">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:SelectedItemEventArgsConverter x:Key="SelectedItemEventArgsConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <StackLayout>
+
+        <HorizontalStackLayout >
+            <Entry 
+                 x:Name="searchEntry"
+                 Completed="Entry_Completed" 
+               Placeholder="Search" PlaceholderColor="DarkGray" Margin="20" HeightRequest="50" 
+           WidthRequest="350" BackgroundColor="LightGray" FontFamily="Poppins" Text="" />
+            <Button BackgroundColor="Transparent" TextColor="Black"
+                Text="cancel" FontSize="13" Clicked="Button_Clicked" HeightRequest="40" WidthRequest="80" Margin="-100,0,0,0" />
+            <Frame HeightRequest="50" BackgroundColor="LightGray" Margin="-15,0,0,0" BorderColor="Transparent">
+                <ImageButton Source="searchicon.svg" HeightRequest="20" WidthRequest="35"  
+                             BackgroundColor="LightGray" Margin="-20" Clicked="ImageButton_Clicked"     />
+            </Frame>
+
+        </HorizontalStackLayout>
+        <ActivityIndicator Color="CadetBlue" IsRunning="True" IsVisible="{Binding ShowLoaderForSearch}"/>
+        <ListView x:Name="myListView"
+                  ItemsSource="{Binding Meals}"
+                  RowHeight="250" SeparatorVisibility="None"
+                  SelectionMode="Single">
+            <ListView.Behaviors>
+                <toolkit:EventToCommandBehavior
+                       EventName="ItemSelected"
+                       Command="{Binding RecipeItemSelectedCommand}"
+                       EventArgsConverter="{StaticResource SelectedItemEventArgsConverter}" />
+            </ListView.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="apimodel:SearchMeal">
+                    <ViewCell>
+                        <Frame CornerRadius="10"
+                       HasShadow="True"
+                       BorderColor="DarkGray"
+                       BackgroundColor="White"
+                       Padding="0"
+                       Margin="5"
+                       HeightRequest="225">
+
+                            <StackLayout>
+                                <Image Source="{Binding strMealThumb}" HorizontalOptions="FillAndExpand" HeightRequest="180"   Aspect="Fill"
+                                       >
+                                    
+                                </Image>
+
+                                <Label Text="{Binding strMeal}" Padding="10,10,0,0" FontSize="Medium" FontAttributes="Bold" FontFamily="Poppins">
+                                    
+                                </Label>
+
+                                <!--<ImageButton Source="bookmarkwhite.png" HeightRequest="25" WidthRequest="25"
+                                     HorizontalOptions="End" Margin="0,-25,10,0" Clicked="imageButton_Clicked_1"/>-->
+                            </StackLayout>
+
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </StackLayout>
+
+</ContentPage>

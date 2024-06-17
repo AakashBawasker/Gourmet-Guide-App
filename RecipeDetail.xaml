@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recipe_app.Views.RecipeDetail"
+             Title="Detail"
+             xmlns:apimodel="clr-namespace:Recipe_app.ApiModels"
+             xmlns:vm="clr-namespace:Recipe_app.Models"
+             x:DataType="vm:RecipeDetailModel"
+             NavigationPage.HasNavigationBar="False">
+
+    
+
+
+    <AbsoluteLayout>
+
+        
+
+        <ScrollView Orientation="Vertical"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                    AbsoluteLayout.LayoutFlags="All">
+            
+            <VerticalStackLayout
+                 AbsoluteLayout.LayoutFlags="All"
+                AbsoluteLayout.LayoutBounds="0,0,1,1">
+
+
+
+                <Image Source="{Binding Meals.strMealThumb}" HeightRequest="250" WidthRequest="500" Aspect="AspectFill" Margin="0,0,0,0"/>
+                
+                <Label Text="{Binding Meals.strMeal}" FontSize="Large" FontAttributes="Bold" Padding="15,10,0,0"/>
+                <Label Text="Instructions" FontSize="Medium" Padding="15,15,0,0" FontAttributes="Bold"/>
+                <Label Text="{Binding Meals.strInstructions&#x0a;}" 
+                       TextColor="Gray" FontSize="Small" Padding="15,5,0,0"/>
+
+                <ActivityIndicator Color="CadetBlue" IsRunning="True" IsVisible="{Binding ShowLoaderForDetail}"/>
+
+
+                <HorizontalStackLayout>
+                    
+                    <VerticalStackLayout>
+                        <Label Text="Measurements" FontSize="Medium" FontAttributes="Bold" Padding="10,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure1}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure2}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure3}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure4}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure5}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure6}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure7}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure8}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure9}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure10}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure11}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure12}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure13}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure14}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure15}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure16}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure17}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure18}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure19}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                        <Label Text="{Binding Meals.strMeasure20}" FontSize="Small" TextColor="Gray" Padding="12,15,0,0"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout>
+                        <Label Text="Ingredients" FontSize="Medium" FontAttributes="Bold" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient1}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient2}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient3}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient4}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient5}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient6}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient7}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient8}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient9}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient10}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient11}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient12}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient13}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient14}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient15}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient16}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient17}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient18}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient19}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                        <Label Text="{Binding Meals.strIngredient20}" FontSize="Small" TextColor="Gray" Padding="20,15,0,0"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+
+            </VerticalStackLayout>
+
+            
+        </ScrollView>
+
+        
+        <ImageButton Source="back.png"  BackgroundColor="White" HeightRequest="40" WidthRequest="40" Margin="20"
+CornerRadius="20" Clicked="ImageButton_Clicked"/>
+
+        <ImageButton BackgroundColor="White" Clicked="ImageButton_Clicked_1" Source="bookmarkwhite.png" WidthRequest="27" HeightRequest="25" 
+                     HorizontalOptions="End" Margin="370,20,0,0" CornerRadius="0"
+ >
+
+
+        </ImageButton>
+        
+        <Button  Text="▶ Watch video" WidthRequest="200" BackgroundColor="Orange" Margin="100,740,0,20"  VerticalOptions="EndAndExpand"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     FontAutoScalingEnabled="True"
+                     CornerRadius="100"
+                     x:DataType="vm:RecipeDetailModel"
+                     Clicked="Button_Clicked" />
+              
+    </AbsoluteLayout>
+
+
+
+
+
+
+</ContentPage>

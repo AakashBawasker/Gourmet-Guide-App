@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recipe_app.SeeAllPages.SeeAll1"
+             Title=""
+             
+             xmlns:m="clr-namespace:Recipe_app.Models"
+             xmlns:vm="clr-namespace:Recipe_app.Models"
+             x:DataType="vm:SearchPageModel"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.HasBackButton="True">
+
+    <NavigationPage.TitleView>
+        <Label Text="Search History" Padding="0,15,0,0" FontSize="Medium" FontAttributes="Bold"/>
+    </NavigationPage.TitleView>
+    
+    <VerticalStackLayout>
+        
+        
+        <ListView ItemsSource="{Binding RecipeHistory}" RowHeight="100" SeparatorVisibility="None"  >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="m:History">
+                    <ViewCell>
+                        <StackLayout>
+                            <Frame CornerRadius="10"
+                        HasShadow="True"
+                        BorderColor="DarkGray"
+                        BackgroundColor="white"
+                        Padding="-5"
+                        Margin="10,0,0,0"
+                        HeightRequest="80"
+                        WidthRequest="370">
+
+
+
+                                <!-- Elevated View Content -->
+                                <StackLayout>
+                                    <HorizontalStackLayout>
+                                        <ImageButton Source="{Binding Image}"  WidthRequest="100" CornerRadius="25" Aspect="AspectFill" HeightRequest="90"
+         Padding="15,15,0,0" HorizontalOptions="StartAndExpand" Margin="0,0,0,0"/>
+                                        <Label Text="{Binding Name}" Padding="10,0,0,0" FontAttributes="Bold" VerticalOptions="Center"/>
+                                        <!--<ImageButton Clicked="ImageButton_Clicked" Source="bookmarkwhite.png" WidthRequest="25" HeightRequest="25" HorizontalOptions="End" Margin="75,0,0,0" />-->
+                                        
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+
+
+
+
+                            </Frame>
+                        </StackLayout>
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</ContentPage>

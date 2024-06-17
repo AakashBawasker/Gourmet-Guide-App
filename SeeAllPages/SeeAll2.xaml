@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recipe_app.SeeAllPages.SeeAll2"
+             Title=""
+             xmlns:m="clr-namespace:Recipe_app.Models"
+             xmlns:vm="clr-namespace:Recipe_app.Models"
+             x:DataType="vm:SearchPageModel"
+             NavigationPage.HasNavigationBar="True"
+            NavigationPage.HasBackButton="True">
+
+    <NavigationPage.TitleView>
+        <Label Text="Last Viewed" Padding="0,15,0,0" FontSize="Medium" FontAttributes="Bold"/>
+    </NavigationPage.TitleView>
+    <VerticalStackLayout>
+        
+        <ListView ItemsSource="{Binding LastViewedItems}" RowHeight="250" SeparatorVisibility="None" >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="m:LastViewed">
+
+                    <ViewCell>
+                        <StackLayout >
+
+                            <!-- Elevated View (CardView) -->
+                            <Frame CornerRadius="10"
+               HasShadow="True"
+               BorderColor="DarkGray"
+               BackgroundColor="white"
+               Padding="0"
+               Margin="-200,30,0,0"
+               HeightRequest="200"
+               WidthRequest="190">
+
+
+
+                                <!-- Elevated View Content -->
+                                <StackLayout>
+                                    <HorizontalStackLayout Padding="-5,0,15,5" >
+                                        <Image Source="{Binding LImage}" HeightRequest="160"  WidthRequest="220"  Aspect="AspectFill"/>
+
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout>
+                                        <Label Text="Chinon Apple Tarts" Padding="10,0,0,10" FontAttributes="Bold"/>
+                                        <!--<ImageButton Clicked="ImageButton_Clicked" Source="bookmarkwhite.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="End" Margin="50,-7,0,0" />-->
+                                        
+
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+
+
+
+
+                            </Frame>
+
+                            <Frame CornerRadius="10"
+                                   HasShadow="True"
+                                   BorderColor="DarkGray"
+                                   BackgroundColor="white"
+                                   Padding="0"
+                                   Margin="200,-200,0,0"
+                                   HeightRequest="200"
+                                   WidthRequest="190">
+
+
+
+                                <!-- Elevated View Content -->
+                                <StackLayout>
+                                    <HorizontalStackLayout Padding="-5,0,15,5" >
+                                        <Image Source="vegan_lasagna.jpg" HeightRequest="160"  WidthRequest="220"  Aspect="AspectFill"/>
+
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout>
+                                        <Label Text="Vegan Lasagna" Padding="10,0,0,10" FontAttributes="Bold"/>
+                                        <!--<ImageButton Clicked="ImageButton_Clicked" Source="bookmarkwhite.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="End" Margin="50,-7,0,0" />-->
+                                        
+
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+
+
+
+
+                            </Frame>
+
+                        </StackLayout>
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</ContentPage>

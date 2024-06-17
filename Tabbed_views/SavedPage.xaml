@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Recipe_app.Tabbed_views.SavedPage"
+             Title="Saved"
+             IconImageSource="favorites.svg"
+             xmlns:m="clr-namespace:Recipe_app.Models"
+             xmlns:vm="clr-namespace:Recipe_app.Models"
+             x:DataType="vm:SavedPageModel"
+             NavigationPage.HasNavigationBar="False"
+             NavigationPage.HasBackButton="False">
+
+    <VerticalStackLayout>
+
+        
+
+        <HorizontalStackLayout >
+            <Label Text="Search" TextColor="DarkGray" Margin="20" HeightRequest="50" Padding="10,10,0,0"
+           WidthRequest="350" BackgroundColor="LightGray" FontFamily="Poppins" >
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+
+                </Label.GestureRecognizers>
+            </Label>
+            <Frame HeightRequest="50" BackgroundColor="LightGray" Margin="-30,0,0,0" BorderColor="Transparent">
+                <ImageButton Source="searchicon.svg" HeightRequest="20" WidthRequest="35"  
+                 BackgroundColor="LightGray" Margin="-20"     />
+            </Frame>
+
+        </HorizontalStackLayout>
+
+        <ListView ItemsSource="{Binding SavedRecipes}" RowHeight="200" SeparatorVisibility="None" >
+            <ListView.ItemTemplate>
+                <DataTemplate x:DataType="m:SavedRecipe">
+
+                    <ViewCell>
+                        <StackLayout >
+
+                            <!-- Elevated View (CardView) -->
+                            <Frame CornerRadius="10"
+                                       HasShadow="True"
+                                       BorderColor="DarkGray"
+                                       BackgroundColor="white"
+                                       Padding="0"
+                                       Margin="-200,5,0,0"
+                                       HeightRequest="190"
+                                       WidthRequest="190">
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                </Frame.GestureRecognizers>    
+
+
+                                <!-- Elevated View Content -->
+                                <StackLayout>
+                                    <HorizontalStackLayout Padding="-5,0,15,5" >
+                                        <Image Source="french_omelette.jpg" HeightRequest="150"  WidthRequest="220"  Aspect="AspectFill"
+                                               />
+
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout>
+                                        <Label Text="French Omelette" Padding="10,0,0,10" FontAttributes="Bold"/>
+                                        <ImageButton Clicked="ImageButton_Clicked" Source="bookmark.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="End" Margin="50,-7,0,0" />
+                                        
+
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+
+
+
+
+                            </Frame>
+
+                            <Frame CornerRadius="10"
+                        HasShadow="True"
+                        BorderColor="DarkGray"
+                        BackgroundColor="white"
+                        Padding="0"
+                        Margin="200,-190,0,0"
+                        HeightRequest="190"
+                        WidthRequest="190">
+
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1"/>
+                                </Frame.GestureRecognizers>
+
+                                <!-- Elevated View Content -->
+                                <StackLayout>
+                                    <HorizontalStackLayout Padding="-5,0,15,5" >
+                                        <Image Source="fettucine_alfredo.jpg" HeightRequest="150"  WidthRequest="220"  Aspect="AspectFill"/>
+
+                                    </HorizontalStackLayout>
+
+                                    <HorizontalStackLayout>
+                                        <Label Text="Fettucine Alfredo" Padding="10,0,0,10" FontAttributes="Bold"/>
+                                        <ImageButton Clicked="ImageButton_Clicked" Source="bookmark.png" WidthRequest="20" HeightRequest="20" HorizontalOptions="End" Margin="47,-7,0,0" />
+                                        
+
+                                    </HorizontalStackLayout>
+                                </StackLayout>
+
+
+
+
+                            </Frame>
+
+                        </StackLayout>
+                    </ViewCell>
+
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+
+    </VerticalStackLayout>
+
+</ContentPage>
